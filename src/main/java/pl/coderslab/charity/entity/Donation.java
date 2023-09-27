@@ -21,12 +21,12 @@ public class Donation {
     private Integer id;
     @NotNull
     private Integer quantity;
-    @OneToOne
+    @ManyToMany
     @JoinColumn(name = "categories_id")
     @NotNull
     private Category categories;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
