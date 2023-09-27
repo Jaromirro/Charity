@@ -43,6 +43,10 @@ public class DonationController {
     public String processForm(@Valid @ModelAttribute("donation") Donation donation, BindingResult result){
 
 
+        return "redirect:/form-confirmation";
+    }
+    @GetMapping("/form-confirmation")
+    public String showFormConf(Model model) {
         return "/form-confirmation";
     }
 }

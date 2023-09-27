@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,12 +24,10 @@ public class Donation {
     @NotNull
     private Integer quantity;
     @ManyToMany
-    @JoinColumn(name = "categories_id")
     @NotNull
-    private Category categories;
+    private Set<Category> category = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "institution_id")
     private Institution institution;
 
     private String street;
