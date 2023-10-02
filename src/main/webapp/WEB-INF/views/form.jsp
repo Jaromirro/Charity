@@ -79,65 +79,32 @@
 
       <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
+        <form:form modelAttribute="donation" method="post">
 
-        <form action="form-confirmation.jsp" method="post">
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
-            <label for="category">Sprzet:
-              <form:checkboxes items="${category}"
-                           path="category"
-                           itemLabel="name"
-                           itemValue="id"/>
-<%--            <div class="form-group form-group--checkbox">--%>
-<%--              <label>--%>
-<%--                <input--%>
-<%--                  type="checkbox"--%>
-<%--                  name="categories"--%>
-<%--                  value="clothes-to-use"--%>
-<%--                />--%>
-<%--                <span class="checkbox"></span>--%>
-<%--                <span class="description"--%>
-<%--                  >ubrania, które nadają się do ponownego użycia</span--%>
-<%--                >--%>
-<%--              </label>--%>
-<%--            </div>--%>
+<%--            <label for="category">Sprzet:--%>
+<%--              <form:checkboxes items="${category}"--%>
+<%--                           path="category"--%>
+<%--                           itemLabel="name"--%>
+<%--                           itemValue="id"/>--%>
+<c:forEach items="${category}" var="category" varStatus="stat">
+            <div class="form-group form-group--checkbox">
+              <label>
+                <input
+                  type="checkbox"
+                  name="categories"
+                  value="clothes-to-use"
+                />
+                <span class="checkbox"> <form:checkbox path="category" value="${category.id}"/></span>
+                <span class="description"
+                  >${category.name}</span
+                >
+              </label>
+            </div>
+</c:forEach>
 
-<%--            <div class="form-group form-group--checkbox">--%>
-<%--              <label>--%>
-<%--                <input--%>
-<%--                  type="checkbox"--%>
-<%--                  name="categories"--%>
-<%--                  value="clothes-useless"--%>
-<%--                />--%>
-<%--                <span class="checkbox"></span>--%>
-<%--                <span class="description">ubrania, do wyrzucenia</span>--%>
-<%--              </label>--%>
-<%--            </div>--%>
-
-<%--            <div class="form-group form-group--checkbox">--%>
-<%--              <label>--%>
-<%--                <input type="checkbox" name="categories" value="toys" />--%>
-<%--                <span class="checkbox"></span>--%>
-<%--                <span class="description">zabawki</span>--%>
-<%--              </label>--%>
-<%--            </div>--%>
-
-<%--            <div class="form-group form-group--checkbox">--%>
-<%--              <label>--%>
-<%--                <input type="checkbox" name="categories" value="books" />--%>
-<%--                <span class="checkbox"></span>--%>
-<%--                <span class="description">książki</span>--%>
-<%--              </label>--%>
-<%--            </div>--%>
-
-<%--            <div class="form-group form-group--checkbox">--%>
-<%--              <label>--%>
-<%--                <input type="checkbox" name="categories" value="other" />--%>
-<%--                <span class="checkbox"></span>--%>
-<%--                <span class="description">inne</span>--%>
-<%--              </label>--%>
-<%--            </div>--%>
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn next-step">Dalej</button>
@@ -150,13 +117,13 @@
 
             <div class="form-group form-group--inline">
 
-<form:form modelAttribute="donation" method="post">
-  <label for="quantity">Liczba 60l worków: <form:input path="quantity" type="number" value="0"/> km
+
+  <label for="quantity">Liczba 60l worków: <form:input path="quantity" type="number" step="1" min="1"/>
   <form:errors path="quantity" cssClass="error"/>
   </label><br>
 
 
-              <%--                <input type="number" name="bags" step="1" min="1" />--%>
+              <%--                <input type="number" name="bags"  />--%>
             </div>
 
             <div class="form-group form-group--buttons">
@@ -172,39 +139,19 @@
             <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
             <c:forEach items="${institution}" var="institution" varStatus="status">
-            <div class="col">
-              <form:radiobutton path="institution" value="${institution.id}"/>
-              <div class="title">${institution.name}</div>
-              <div class="subtitle">${institution.description}</div>
+                       <div class="form-group form-group--checkbox">
+              <label>
+                <form:radiobutton path="institution" value="${institution.id}" name="organization"/>
+                <span class="checkbox radio"></span>
+                <span class="description">
+                  <div class="title">${institution.name}</div>
+                  <div class="subtitle">
+                      ${institution.description}
+                  </div>
+                </span>
+              </label>
             </div>
-              </c:forEach>
-<%--            <div class="form-group form-group--checkbox">--%>
-<%--              <label>--%>
-<%--                <input type="radio" name="organization" value="old" />--%>
-<%--                <span class="checkbox radio"></span>--%>
-<%--                <span class="description">--%>
-<%--                  <div class="title">Fundacja “Bez domu”</div>--%>
-<%--                  <div class="subtitle">--%>
-<%--                    Cel i misja: Pomoc dla osób nie posiadających miejsca--%>
-<%--                    zamieszkania--%>
-<%--                  </div>--%>
-<%--                </span>--%>
-<%--              </label>--%>
-<%--            </div>--%>
-
-<%--            <div class="form-group form-group--checkbox">--%>
-<%--              <label>--%>
-<%--                <input type="radio" name="organization" value="old" />--%>
-<%--                <span class="checkbox radio"></span>--%>
-<%--                <span class="description">--%>
-<%--                  <div class="title">Fundacja “Dla dzieci"</div>--%>
-<%--                  <div class="subtitle">--%>
-<%--                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji--%>
-<%--                    życiowej.--%>
-<%--                  </div>--%>
-<%--                </span>--%>
-<%--              </label>--%>
-<%--            </div>--%>
+            </c:forEach>
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn prev-step">Wstecz</button>
@@ -274,6 +221,10 @@
           <div data-step="5">
             <h3>Podsumowanie Twojej darowizny</h3>
 
+
+
+
+
             <div class="summary">
               <div class="form-section">
                 <h4>Oddajesz:</h4>
@@ -325,6 +276,7 @@
         </form>
       </div>
     </section>
+    <script src="<c:url value="resources/js/app.js"/>"></script>
 
     <jsp:include page="footer.jsp"/>
   </body>

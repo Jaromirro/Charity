@@ -20,4 +20,6 @@ public class CategoryDao {
         return entityManager.createQuery("SELECT a FROM Category a")
                 .getResultList();
     }
+
+
 }

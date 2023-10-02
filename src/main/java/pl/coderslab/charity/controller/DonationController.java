@@ -24,9 +24,12 @@ public class DonationController {
 
     private CategoryDao categoryDao;
 
-    public DonationController(CategoryDao categoryDao, InstitutionDao institutionDao) {
+    private DonationDao donationDao;
+
+    public DonationController(CategoryDao categoryDao, InstitutionDao institutionDao, DonationDao donationDao) {
         this.institutionDao = institutionDao;
         this.categoryDao = categoryDao;
+        this.donationDao = donationDao;
     }
 
     @GetMapping("/form")
@@ -41,6 +44,7 @@ public class DonationController {
 
     @PostMapping("/form")
     public String processForm(@Valid @ModelAttribute("donation") Donation donation, BindingResult result){
+        donationDao.save(donation);
 
 
         return "redirect:/form-confirmation";

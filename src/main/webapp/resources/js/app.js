@@ -157,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (slide.dataset.step == this.currentStep) {
           slide.classList.add("active");
+          console.log(slide)
         }
       });
 

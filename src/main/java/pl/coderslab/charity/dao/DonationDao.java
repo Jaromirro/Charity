@@ -20,4 +20,7 @@ public class DonationDao {
         return entityManager.createQuery("SELECT a FROM Donation a")
                 .getResultList();
     }
+    public void save(Donation donation) {
+        entityManager.persist(donation);
+    }
 }

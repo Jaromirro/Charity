@@ -16,8 +16,8 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="login.jsp" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="register.jsp" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href="login" class="btn btn--small btn--without-border">Zaloguj</a></li>
+            <li><a href="register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
         <jsp:include page="header.jsp"/>
@@ -36,7 +36,7 @@
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>${donation}</em>
+            <em>${bags}</em>
 
             <h3>Oddanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
@@ -44,7 +44,7 @@
         </div>
 
         <div class="stats--item">
-            <em>${bags}</em>
+            <em>${donation}</em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
